@@ -341,7 +341,9 @@ SDL_GamepadBinding :: struct
  * \sa SDL_HINT_GAMECONTROLLERCONFIG_FILE
  * \sa SDL_EVENT_GAMEPAD_ADDED
  */
- SDL_AddGamepadMappingsFromIO :: (src: *SDL_IOStream, closeio: bool) -> s32 #foreign SDL3;
+ 
+//  TODO(Lucas) : I haven't done the SDL_IOStream stuff for now, so I'm commenting that one out.
+//  SDL_AddGamepadMappingsFromIO :: (src: *SDL_IOStream, closeio: bool) -> s32 #foreign SDL3;
 
 /**
  * Load a set of gamepad mappings from a file.
@@ -914,7 +916,7 @@ SDL_GetGamepadSteamHandle :: (gamepad: *SDL_Gamepad) -> u64 #foreign SDL3;
  *
  * \since This function is available since SDL 3.2.0.
  */
-SDL_GetGamepadConnectionState :: (gamepad: *SDL_Gamepad) -> SDL_JoystickConnection #foreign SDL3;
+SDL_GetGamepadConnectionState :: (gamepad: *SDL_Gamepad) -> SDL_JoystickConnectionState #foreign SDL3;
 
 /**
  * Get the battery state of a gamepad.
@@ -1129,7 +1131,7 @@ SDL_GamepadHasAxis :: (gamepad: *SDL_Gamepad, axis: SDL_GamepadAxis) -> bool #fo
  * \sa SDL_GamepadHasAxis
  * \sa SDL_GetGamepadButton
  */
-SDL_GetGamepadAxis :: (gamepad: *SDL_Gamepad, axis: SDL_GamepadAxis) -> Sint16 #foreign SDL3;
+SDL_GetGamepadAxis :: (gamepad: *SDL_Gamepad, axis: SDL_GamepadAxis) -> s16 #foreign SDL3;
 
 /**
  * Convert a string into an SDL_GamepadButton enum.

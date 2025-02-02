@@ -3,6 +3,7 @@
 }
 
 #load "sdl_version.jai";
+#load "sdl_guid.jai";
 #load "sdl_error.jai";
 #load "sdl_timer.jai";
 #load "sdl_properties.jai";
