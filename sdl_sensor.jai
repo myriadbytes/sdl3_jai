@@ -95,7 +95,7 @@ SDL_STANDARD_GRAVITY :: 9.80665;
  *
  * \sa SDL_GetCurrentDisplayOrientation
  */
-using SDL_SensorType :: enum
+using SDL_SensorType :: enum s32
 {
     SDL_SENSOR_INVALID :: -1;    /**< Returned for an invalid sensor */
     SDL_SENSOR_UNKNOWN;          /**< Unknown sensor type */

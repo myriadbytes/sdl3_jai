@@ -38,7 +38,7 @@ SDL_PropertiesID :: u32;
  *
  * \since This enum is available since SDL 3.2.0.
  */
-using SDL_PropertyType :: enum
+using SDL_PropertyType :: enum u32
 {
     SDL_PROPERTY_TYPE_INVALID;
     SDL_PROPERTY_TYPE_POINTER;

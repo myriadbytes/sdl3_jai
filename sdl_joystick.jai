@@ -64,7 +64,7 @@ SDL_JoystickID :: u32;
  *
  * \since This enum is available since SDL 3.2.0.
  */
-using SDL_JoystickType :: enum
+using SDL_JoystickType :: enum u32
 {
     SDL_JOYSTICK_TYPE_UNKNOWN;
     SDL_JOYSTICK_TYPE_GAMEPAD;
@@ -87,7 +87,7 @@ using SDL_JoystickType :: enum
  *
  * \since This enum is available since SDL 3.2.0.
  */
-using SDL_JoystickConnectionState :: enum
+using SDL_JoystickConnectionState :: enum s32
 {
     SDL_JOYSTICK_CONNECTION_INVALID :: -1;
     SDL_JOYSTICK_CONNECTION_UNKNOWN;
