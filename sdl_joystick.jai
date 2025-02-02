@@ -1147,4 +1147,4 @@ SDL_GetJoystickConnectionState :: (joystick: *SDL_Joystick) -> SDL_JoystickConne
  *
  * \since This function is available since SDL 3.2.0.
  */
-SDL_GetJoystickPowerInfo :: (joystick: *SDL_Joystick, percent: *s32) -> SDL_Power #foreign SDL3;
+SDL_GetJoystickPowerInfo :: (joystick: *SDL_Joystick, percent: *s32) -> SDL_PowerState #foreign SDL3;

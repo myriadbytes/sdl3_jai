@@ -936,7 +936,7 @@ SDL_GetGamepadConnectionState :: (gamepad: *SDL_Gamepad) -> SDL_JoystickConnecti
  *
  * \since This function is available since SDL 3.2.0.
  */
-SDL_GetGamepadPowerInfo :: (gamepad: *SDL_Gamepad, percent: *s32) -> SDL_Power #foreign SDL3;
+SDL_GetGamepadPowerInfo :: (gamepad: *SDL_Gamepad, percent: *s32) -> SDL_PowerState #foreign SDL3;
 
 /**
  * Check if a gamepad has been opened and is currently connected.

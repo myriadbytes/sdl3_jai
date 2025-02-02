@@ -2,18 +2,29 @@
     SDL3 :: #library "windows/x64/SDL3";
 }
 
-#load "sdl_version.jai";
-#load "sdl_guid.jai";
-#load "sdl_error.jai";
-#load "sdl_timer.jai";
-#load "sdl_properties.jai";
+// Basics
 #load "sdl_init.jai";
+#load "sdl_properties.jai";
+#load "sdl_error.jai";
+#load "sdl_version.jai";
+
+// Video
 #load "sdl_video.jai";
-#load "sdl_scancode.jai";
-#load "sdl_keycode.jai";
+#load "sdl_render.jai";
+#load "sdl_rect.jai";
+
+// Input Events
+#load "sdl_events.jai";
 #load "sdl_keyboard.jai";
+#load "sdl_keycode.jai";
+#load "sdl_scancode.jai";
 #load "sdl_joystick.jai";
 #load "sdl_gamepad.jai";
-#load "sdl_events.jai";
-#load "sdl_rect.jai";
-#load "sdl_render.jai";
+#load "sdl_sensor.jai";
+
+// Time
+#load "sdl_timer.jai";
+
+// Additional Functionality
+#load "sdl_power.jai";
+#load "sdl_guid.jai";
