@@ -68,7 +68,7 @@ SDL_Gamepad :: void;
  * simply most closely match that console's controllers (does it have A/B/X/Y
  * buttons or X/O/Square/Triangle? Does it have a touchpad? etc).
  */
-SDL_GamepadType :: enum 
+using SDL_GamepadType :: enum 
 {
     SDL_GAMEPAD_TYPE_UNKNOWN :: 0;
     SDL_GAMEPAD_TYPE_STANDARD;
@@ -107,7 +107,7 @@ SDL_GamepadType :: enum
  *
  * \since This enum is available since SDL 3.2.0.
  */
-SDL_GamepadButton :: enum
+using SDL_GamepadButton :: enum
 {
     SDL_GAMEPAD_BUTTON_INVALID :: -1;
     SDL_GAMEPAD_BUTTON_SOUTH;           /**< Bottom face button (e.g. Xbox A button) */
@@ -150,7 +150,7 @@ SDL_GamepadButton :: enum
  *
  * \since This enum is available since SDL 3.2.0.
  */
-SDL_GamepadButtonLabel :: enum
+using SDL_GamepadButtonLabel :: enum
 {
     SDL_GAMEPAD_BUTTON_LABEL_UNKNOWN;
     SDL_GAMEPAD_BUTTON_LABEL_A;
@@ -177,7 +177,7 @@ SDL_GamepadButtonLabel :: enum
  *
  * \since This enum is available since SDL 3.2.0.
  */
-SDL_GamepadAxis :: enum
+using SDL_GamepadAxis :: enum
 {
     SDL_GAMEPAD_AXIS_INVALID :: -1;
     SDL_GAMEPAD_AXIS_LEFTX;
@@ -199,7 +199,7 @@ SDL_GamepadAxis :: enum
  *
  * \since This enum is available since SDL 3.2.0.
  */
-SDL_GamepadBindingType :: enum
+using SDL_GamepadBindingType :: enum
 {
     SDL_GAMEPAD_BINDTYPE_NONE :: 0;
     SDL_GAMEPAD_BINDTYPE_BUTTON;

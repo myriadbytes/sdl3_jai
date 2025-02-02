@@ -268,7 +268,7 @@ using SDL_Keycode :: enum u32
 }
 
 
-SDL_Keymod :: enum u16
+using SDL_Keymod :: enum u16
 {
     SDL_KMOD_NONE   :: 0x0000; /**< no modifier is applicable. */
     SDL_KMOD_LSHIFT :: 0x0001; /**< the left Shift key is down. */

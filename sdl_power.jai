@@ -22,7 +22,7 @@
  *
  * \since This enum is available since SDL 3.2.0.
  */
-SDL_PowerState :: enum
+using SDL_PowerState :: enum
 {
     SDL_POWERSTATE_ERROR :: -1;   /**< error determining power status */
     SDL_POWERSTATE_UNKNOWN;      /**< cannot determine power status */
