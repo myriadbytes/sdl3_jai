@@ -22,8 +22,14 @@
 #load "sdl_gamepad.jai";
 #load "sdl_sensor.jai";
 
+// Audio
+#load "sdl_audio.jai";
+
 // Time
 #load "sdl_timer.jai";
+
+// Platform & CPU Information
+#load "sdl_endian.jai";
 
 // Additional Functionality
 #load "sdl_power.jai";
