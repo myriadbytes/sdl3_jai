@@ -1,6 +1,6 @@
 // SDL_video.h
 
-SDL_Window :: void;
+SDL_Window :: #type,distinct void;
 SDL_DisplayID :: u32;
 SDL_WindowID :: u32;
 

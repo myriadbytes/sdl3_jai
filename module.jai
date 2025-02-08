@@ -11,7 +11,10 @@
 // Video
 #load "sdl_video.jai";
 #load "sdl_render.jai";
+#load "sdl_pixels.jai";
+#load "sdl_blendmode.jai";
 #load "sdl_rect.jai";
+#load "sdl_surface.jai";
 
 // Input Events
 #load "sdl_events.jai";

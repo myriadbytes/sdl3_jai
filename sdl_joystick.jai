@@ -38,7 +38,7 @@
  *
  * \since This struct is available since SDL 3.2.0.
  */
-SDL_Joystick :: void;
+SDL_Joystick :: #type,distinct void;
 
 /**
  * This is a unique ID for a joystick for the time it is connected to the

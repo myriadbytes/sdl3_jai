@@ -1053,7 +1053,7 @@ SDL_PumpEvents :: () -> void #foreign SDL3;
  *
  * \since This enum is available since SDL 3.2.0.
  */
-SDL_EventAction :: enum u32
+using SDL_EventAction :: enum u32
 {
     SDL_ADDEVENT;  /**< Add events to the back of the queue. */
     SDL_PEEKEVENT; /**< Check but don't remove events from the queue front. */

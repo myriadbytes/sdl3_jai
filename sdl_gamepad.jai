@@ -57,7 +57,7 @@
  *
  * \since This struct is available since SDL 3.2.0.
  */
-SDL_Gamepad :: void;
+SDL_Gamepad :: #type,distinct void;
 
 /**
  * Standard gamepad types.
