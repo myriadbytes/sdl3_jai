@@ -2527,5 +2527,5 @@ SDL_RenderDebugText :: (renderer: *SDL_Renderer, x: float, y: float, str: *u8) -
  * \sa SDL_RenderDebugText
  * \sa SDL_DEBUG_TEXT_FONT_CHARACTER_SIZE
  */
-// TODO(Lucas): Uncomment this when I find out whether or not jai supports c vararg
-//bool SLCALL SDL_RenderDebugTextFormat( renderer: *SDL_Renderer, x: float, y: float, SDL_PRINTF_FORMAT_STRING fmt: *char, ...) SDL_PRINTF_VARARG_FUNC(4);
+// TODO(Lucas): This looks super unsafe and weird, but it works..? I need to learn more about va_list in C/Jai
+SDL_RenderDebugTextFormat :: (renderer: *SDL_Renderer, x: float, y: float, fmt: *u8, va_list: .. Any) -> bool #foreign SDL3;
