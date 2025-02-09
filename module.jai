@@ -36,4 +36,5 @@
 
 // Additional Functionality
 #load "sdl_power.jai";
+#load "sdl_stdinc.jai";
 #load "sdl_guid.jai";

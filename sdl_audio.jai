@@ -157,7 +157,7 @@ SDL_AUDIO_MASK_SIGNED        : u32 : (1<<15);
  * \sa SDL_AUDIO_ISSIGNED
  * \sa SDL_AUDIO_ISUNSIGNED
  */
-SDL_AudioFormat :: enum u32
+using SDL_AudioFormat :: enum u32
 {
     SDL_AUDIO_UNKNOWN   :: 0x0000;  /**< Unspecified audio format */
     SDL_AUDIO_U8        :: 0x0008;  /**< Unsigned 8-bit samples */
