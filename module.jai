@@ -28,6 +28,9 @@
 // Audio
 #load "sdl_audio.jai";
 
+// GPU
+#load "sdl_gpu.jai";
+
 // Time
 #load "sdl_timer.jai";
 

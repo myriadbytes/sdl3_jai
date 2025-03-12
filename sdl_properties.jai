@@ -31,7 +31,7 @@
  *
  * \since This datatype is available since SDL 3.2.0.
  */
-SDL_PropertiesID :: u32;
+SDL_PropertiesID :: #type,distinct u32;
 
 /**
  * SDL property type
