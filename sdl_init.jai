@@ -1,4 +1,23 @@
-// SDL_init.h
+/*
+  Simple DirectMedia Layer
+  Copyright (C) 1997-2025 Sam Lantinga <slouken@libsdl.org>
+
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
+
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
+
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
+*/
 
 /**
  * Initialization flags for SDL_Init and/or SDL_InitSubSystem
@@ -25,6 +44,97 @@ using SDL_InitFlags :: enum_flags u32
     SDL_INIT_SENSOR     :: 0x00008000; /* < `SDL_INIT_SENSOR` implies `SDL_INIT_EVENTS` */
     SDL_INIT_CAMERA     :: 0x00010000; /* < `SDL_INIT_CAMERA` implies `SDL_INIT_EVENTS` */
 }
+
+/**
+ * Return values for optional main callbacks.
+ *
+ * Returning SDL_APP_SUCCESS or SDL_APP_FAILURE from SDL_AppInit,
+ * SDL_AppEvent, or SDL_AppIterate will terminate the program and report
+ * success/failure to the operating system. What that means is
+ * platform-dependent. On Unix, for example, on success, the process error
+ * code will be zero, and on failure it will be 1. This interface doesn't
+ * allow you to return specific exit codes, just whether there was an error
+ * generally or not.
+ *
+ * Returning SDL_APP_CONTINUE from these functions will let the app continue
+ * to run.
+ *
+ * See
+ * [Main callbacks in SDL3](https://wiki.libsdl.org/SDL3/README/main-functions#main-callbacks-in-sdl3)
+ * for complete details.
+ *
+ * \since This enum is available since SDL 3.2.0.
+ */
+SDL_AppResult :: enum u32
+{
+    SDL_APP_CONTINUE;   /**< Value that requests that the app continue from the main callbacks. */
+    SDL_APP_SUCCESS;    /**< Value that requests termination with success from the main callbacks. */
+    SDL_APP_FAILURE;    /**< Value that requests termination with error from the main callbacks. */
+};
+
+/**
+ * Function pointer typedef for SDL_AppInit.
+ *
+ * These are used by SDL_EnterAppMainCallbacks. This mechanism operates behind
+ * the scenes for apps using the optional main callbacks. Apps that want to
+ * use this should just implement SDL_AppInit directly.
+ *
+ * \param appstate a place where the app can optionally store a pointer for
+ *                 future use.
+ * \param argc the standard ANSI C main's argc; number of elements in `argv`.
+ * \param argv the standard ANSI C main's argv; array of command line
+ *             arguments.
+ * \returns SDL_APP_FAILURE to terminate with an error, SDL_APP_SUCCESS to
+ *          terminate with success, SDL_APP_CONTINUE to continue.
+ *
+ * \since This datatype is available since SDL 3.2.0.
+ */
+SDL_AppInit_func :: #type (appstate: **void, argc: s32, argv: **u8) -> SDL_AppResult #c_call; 
+
+/**
+ * Function pointer typedef for SDL_AppIterate.
+ *
+ * These are used by SDL_EnterAppMainCallbacks. This mechanism operates behind
+ * the scenes for apps using the optional main callbacks. Apps that want to
+ * use this should just implement SDL_AppIterate directly.
+ *
+ * \param appstate an optional pointer, provided by the app in SDL_AppInit.
+ * \returns SDL_APP_FAILURE to terminate with an error, SDL_APP_SUCCESS to
+ *          terminate with success, SDL_APP_CONTINUE to continue.
+ *
+ * \since This datatype is available since SDL 3.2.0.
+ */
+SDL_AppIterate_func :: #type (appstate: *void) -> SDL_AppResult #c_call;
+
+/**
+ * Function pointer typedef for SDL_AppEvent.
+ *
+ * These are used by SDL_EnterAppMainCallbacks. This mechanism operates behind
+ * the scenes for apps using the optional main callbacks. Apps that want to
+ * use this should just implement SDL_AppEvent directly.
+ *
+ * \param appstate an optional pointer, provided by the app in SDL_AppInit.
+ * \param event the new event for the app to examine.
+ * \returns SDL_APP_FAILURE to terminate with an error, SDL_APP_SUCCESS to
+ *          terminate with success, SDL_APP_CONTINUE to continue.
+ *
+ * \since This datatype is available since SDL 3.2.0.
+ */
+SDL_AppEvent_func :: #type (appstate: *void, event: *SDL_Event) -> SDL_AppResult #c_call;
+
+/**
+ * Function pointer typedef for SDL_AppQuit.
+ *
+ * These are used by SDL_EnterAppMainCallbacks. This mechanism operates behind
+ * the scenes for apps using the optional main callbacks. Apps that want to
+ * use this should just implement SDL_AppEvent directly.
+ *
+ * \param appstate an optional pointer, provided by the app in SDL_AppInit.
+ * \param result the result code that terminated the app (success or failure).
+ *
+ * \since This datatype is available since SDL 3.2.0.
+ */
+SDL_AppQuit_func :: #type (appstate: *void, result: SDL_AppResult) #c_call;
 
 /**
  * Initialize the SDL library.
@@ -167,3 +277,171 @@ SDL_Quit :: () #foreign SDL3;
  */
 SDL_IsMainThread :: () -> bool #foreign SDL3;
 
+/**
+ * Callback run on the main thread.
+ *
+ * \param userdata an app-controlled pointer that is passed to the callback.
+ *
+ * \since This datatype is available since SDL 3.2.0.
+ *
+ * \sa SDL_RunOnMainThread
+ */
+typedef void (SDLCALL *SDL_MainThreadCallback)(void *userdata);
+
+/**
+ * Call a function on the main thread during event processing.
+ *
+ * If this is called on the main thread, the callback is executed immediately.
+ * If this is called on another thread, this callback is queued for execution
+ * on the main thread during event processing.
+ *
+ * Be careful of deadlocks when using this functionality. You should not have
+ * the main thread wait for the current thread while this function is being
+ * called with `wait_complete` true.
+ *
+ * \param callback the callback to call on the main thread.
+ * \param userdata a pointer that is passed to `callback`.
+ * \param wait_complete true to wait for the callback to complete, false to
+ *                      return immediately.
+ * \returns true on success or false on failure; call SDL_GetError() for more
+ *          information.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_IsMainThread
+ */
+SDL_RunOnMainThread :: (callback: SDL_MainThreadCallback, userdata: *void, wait_complete: bool) -> bool #foreign SDL3;
+
+/**
+ * Specify basic metadata about your app.
+ *
+ * You can optionally provide metadata about your app to SDL. This is not
+ * required, but strongly encouraged.
+ *
+ * There are several locations where SDL can make use of metadata (an "About"
+ * box in the macOS menu bar, the name of the app can be shown on some audio
+ * mixers, etc). Any piece of metadata can be left as NULL, if a specific
+ * detail doesn't make sense for the app.
+ *
+ * This function should be called as early as possible, before SDL_Init.
+ * Multiple calls to this function are allowed, but various state might not
+ * change once it has been set up with a previous call to this function.
+ *
+ * Passing a NULL removes any previous metadata.
+ *
+ * This is a simplified interface for the most important information. You can
+ * supply significantly more detailed metadata with
+ * SDL_SetAppMetadataProperty().
+ *
+ * \param appname The name of the application ("My Game 2: Bad Guy's
+ *                Revenge!").
+ * \param appversion The version of the application ("1.0.0beta5" or a git
+ *                   hash, or whatever makes sense).
+ * \param appidentifier A unique string in reverse-domain format that
+ *                      identifies this app ("com.example.mygame2").
+ * \returns true on success or false on failure; call SDL_GetError() for more
+ *          information.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_SetAppMetadataProperty
+ */
+SDL_SetAppMetadata :: (appname: *u8, appversion: *u8, appidentifier: *u8) -> bool #foreign SDL3;
+
+/**
+ * Specify metadata about your app through a set of properties.
+ *
+ * You can optionally provide metadata about your app to SDL. This is not
+ * required, but strongly encouraged.
+ *
+ * There are several locations where SDL can make use of metadata (an "About"
+ * box in the macOS menu bar, the name of the app can be shown on some audio
+ * mixers, etc). Any piece of metadata can be left out, if a specific detail
+ * doesn't make sense for the app.
+ *
+ * This function should be called as early as possible, before SDL_Init.
+ * Multiple calls to this function are allowed, but various state might not
+ * change once it has been set up with a previous call to this function.
+ *
+ * Once set, this metadata can be read using SDL_GetAppMetadataProperty().
+ *
+ * These are the supported properties:
+ *
+ * - `SDL_PROP_APP_METADATA_NAME_STRING`: The human-readable name of the
+ *   application, like "My Game 2: Bad Guy's Revenge!". This will show up
+ *   anywhere the OS shows the name of the application separately from window
+ *   titles, such as volume control applets, etc. This defaults to "SDL
+ *   Application".
+ * - `SDL_PROP_APP_METADATA_VERSION_STRING`: The version of the app that is
+ *   running; there are no rules on format, so "1.0.3beta2" and "April 22nd,
+ *   2024" and a git hash are all valid options. This has no default.
+ * - `SDL_PROP_APP_METADATA_IDENTIFIER_STRING`: A unique string that
+ *   identifies this app. This must be in reverse-domain format, like
+ *   "com.example.mygame2". This string is used by desktop compositors to
+ *   identify and group windows together, as well as match applications with
+ *   associated desktop settings and icons. If you plan to package your
+ *   application in a container such as Flatpak, the app ID should match the
+ *   name of your Flatpak container as well. This has no default.
+ * - `SDL_PROP_APP_METADATA_CREATOR_STRING`: The human-readable name of the
+ *   creator/developer/maker of this app, like "MojoWorkshop, LLC"
+ * - `SDL_PROP_APP_METADATA_COPYRIGHT_STRING`: The human-readable copyright
+ *   notice, like "Copyright (c) 2024 MojoWorkshop, LLC" or whatnot. Keep this
+ *   to one line, don't paste a copy of a whole software license in here. This
+ *   has no default.
+ * - `SDL_PROP_APP_METADATA_URL_STRING`: A URL to the app on the web. Maybe a
+ *   product page, or a storefront, or even a GitHub repository, for user's
+ *   further information This has no default.
+ * - `SDL_PROP_APP_METADATA_TYPE_STRING`: The type of application this is.
+ *   Currently this string can be "game" for a video game, "mediaplayer" for a
+ *   media player, or generically "application" if nothing else applies.
+ *   Future versions of SDL might add new types. This defaults to
+ *   "application".
+ *
+ * \param name the name of the metadata property to set.
+ * \param value the value of the property, or NULL to remove that property.
+ * \returns true on success or false on failure; call SDL_GetError() for more
+ *          information.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_GetAppMetadataProperty
+ * \sa SDL_SetAppMetadata
+ */
+SDL_SetAppMetadataProperty :: (name: *u8, value: *u8) -> bool #foreign SDL3;
+
+SDL_PROP_APP_METADATA_NAME_STRING         :: "SDL.app.metadata.name";
+SDL_PROP_APP_METADATA_VERSION_STRING      :: "SDL.app.metadata.version";
+SDL_PROP_APP_METADATA_IDENTIFIER_STRING   :: "SDL.app.metadata.identifier";
+SDL_PROP_APP_METADATA_CREATOR_STRING      :: "SDL.app.metadata.creator";
+SDL_PROP_APP_METADATA_COPYRIGHT_STRING    :: "SDL.app.metadata.copyright";
+SDL_PROP_APP_METADATA_URL_STRING          :: "SDL.app.metadata.url";
+SDL_PROP_APP_METADATA_TYPE_STRING         :: "SDL.app.metadata.type";
+
+/**
+ * Get metadata about your app.
+ *
+ * This returns metadata previously set using SDL_SetAppMetadata() or
+ * SDL_SetAppMetadataProperty(). See SDL_SetAppMetadataProperty() for the list
+ * of available properties and their meanings.
+ *
+ * \param name the name of the metadata property to get.
+ * \returns the current value of the metadata property, or the default if it
+ *          is not set, NULL for properties with no default.
+ *
+ * \threadsafety It is safe to call this function from any thread, although
+ *               the string returned is not protected and could potentially be
+ *               freed if you call SDL_SetAppMetadataProperty() to set that
+ *               property from another thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_SetAppMetadata
+ * \sa SDL_SetAppMetadataProperty
+ */
+SDL_GetAppMetadataProperty :: (name: *u8) -> *u8 #foreign SDL3;
