@@ -1,4 +1,24 @@
-// SDL_stdinc.h
+/*
+  Simple DirectMedia Layer
+  Copyright (C) 1997-2025 Sam Lantinga <slouken@libsdl.org>
+
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
+
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
+
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
+*/
+
 // NOTE(Lucas): This SDL header deals with a lot of C/C++ stuff, so I'm only porting the most relevant parts for now (i.e: math functions)
 
 /**
@@ -24,6 +44,8 @@
  * SDL_crc32() and SDL_reinterpret_cast, etc. It also offers a few better
  * options, like SDL_strlcpy(), which functions as a safer form of strcpy().
  */
+ 
+ SDL_Time :: #type,distinct s64;
 
 /**
  * Define a four character code as a Uint32.
@@ -1503,3 +1525,20 @@ SDL_tan :: (x: float64) -> float64 #foreign SDL3;
  * \sa SDL_atan2f
  */
 SDL_tanf :: (x: float32) -> float32 #foreign SDL3;
+
+/**
+ * A generic function pointer.
+ *
+ * In theory, generic function pointers should use this, instead of `void *`,
+ * since some platforms could treat code addresses differently than data
+ * addresses. Although in current times no popular platforms make this
+ * distinction, it is more correct and portable to use the correct type for a
+ * generic pointer.
+ *
+ * If for some reason you need to force this typedef to be an actual `void *`,
+ * perhaps to work around a compiler or existing code, you can define
+ * `SDL_FUNCTION_POINTER_IS_VOID_POINTER` before including any SDL headers.
+ *
+ * \since This datatype is available since SDL 3.2.0.
+ */
+SDL_FunctionPointer :: *void;
