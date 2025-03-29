@@ -33,6 +33,11 @@
 
 // Time
 #load "sdl_timer.jai";
+#load "sdl_time.jai";
+
+// File and I/O Abstractions
+#load "sdl_filesystem.jai";
+#load "sdl_iostream.jai";
 
 // Platform & CPU Information
 #load "sdl_endian.jai";
