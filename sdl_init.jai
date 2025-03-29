@@ -286,7 +286,7 @@ SDL_IsMainThread :: () -> bool #foreign SDL3;
  *
  * \sa SDL_RunOnMainThread
  */
-typedef void (SDLCALL *SDL_MainThreadCallback)(void *userdata);
+SDL_MainThreadCallback :: #type (userdata: *void) #c_call;
 
 /**
  * Call a function on the main thread during event processing.

@@ -64,7 +64,7 @@ SDL_MICRO_VERSION :: 8;
  *
  * \since This macro is available since SDL 3.2.0.
  */
-#define SDL_VERSIONNUM :: (major: s32, minor: s32, patch: s32) -> s32 #expand { return ((major) * 1000000 + (minor) * 1000 + (patch)); }
+SDL_VERSIONNUM :: (major: s32, minor: s32, patch: s32) -> s32 #expand { return ((major) * 1000000 + (minor) * 1000 + (patch)); }
 
 /**
  * This macro extracts the major version from a version number
@@ -75,7 +75,7 @@ SDL_MICRO_VERSION :: 8;
  *
  * \since This macro is available since SDL 3.2.0.
  */
-#define SDL_VERSIONNUM_MAJOR :: (version: s32) -> s32 #expand { return ((version) / 1000000); }
+SDL_VERSIONNUM_MAJOR :: (version: s32) -> s32 #expand { return ((version) / 1000000); }
 
 /**
  * This macro extracts the minor version from a version number
@@ -86,7 +86,7 @@ SDL_MICRO_VERSION :: 8;
  *
  * \since This macro is available since SDL 3.2.0.
  */
-#define SDL_VERSIONNUM_MINOR :: (version: s32) -> s32 #expand { return (((version) / 1000) % 1000); }
+SDL_VERSIONNUM_MINOR :: (version: s32) -> s32 #expand { return (((version) / 1000) % 1000); }
 
 /**
  * This macro extracts the micro version from a version number
@@ -97,7 +97,7 @@ SDL_MICRO_VERSION :: 8;
  *
  * \since This macro is available since SDL 3.2.0.
  */
-#define SDL_VERSIONNUM_MICRO :: (version: s32) -> s32 #expand { return ((version) % 1000); }
+SDL_VERSIONNUM_MICRO :: (version: s32) -> s32 #expand { return ((version) % 1000); }
 
 /**
  * This is the version number macro for the current SDL version.
@@ -106,14 +106,14 @@ SDL_MICRO_VERSION :: 8;
  *
  * \sa SDL_GetVersion
  */
-#define SDL_VERSION :: () -> s32 #expand { SDL_VERSIONNUM(SDL_MAJOR_VERSION, SDL_MINOR_VERSION, SDL_MICRO_VERSION) }
+SDL_VERSION :: () -> s32 #expand { SDL_VERSIONNUM(SDL_MAJOR_VERSION, SDL_MINOR_VERSION, SDL_MICRO_VERSION); }
 
 /**
  * This macro will evaluate to true if compiled with SDL at least X.Y.Z.
  *
  * \since This macro is available since SDL 3.2.0.
  */
-#define SDL_VERSION_ATLEAST :: (X: s32, Y: s32, Z: s32) -> bool #expand { return (SDL_VERSION >= SDL_VERSIONNUM(X, Y, Z)); }
+SDL_VERSION_ATLEAST :: (X: s32, Y: s32, Z: s32) -> bool #expand { return (SDL_VERSION >= SDL_VERSIONNUM(X, Y, Z)); }
 
 /**
  * Get the version of SDL that is linked against your program.
