@@ -6,6 +6,7 @@
 #load "sdl_init.jai";
 #load "sdl_properties.jai";
 #load "sdl_error.jai";
+#load "sdl_log.jai";
 #load "sdl_version.jai";
 
 // Video
@@ -21,6 +22,7 @@
 #load "sdl_keyboard.jai";
 #load "sdl_keycode.jai";
 #load "sdl_scancode.jai";
+#load "sdl_mouse.jai";
 #load "sdl_joystick.jai";
 #load "sdl_gamepad.jai";
 #load "sdl_sensor.jai";
