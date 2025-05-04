@@ -122,12 +122,12 @@ SDL_DisplayMode :: struct
 {
     displayID: SDL_DisplayID;        /**< the display this mode is associated with */
     format: SDL_PixelFormat;         /**< pixel format */
-    w: int;                          /**< width */
-    h: int;                          /**< height */
+    w: s32;                          /**< width */
+    h: s32;                          /**< height */
     pixel_density: float;            /**< scale converting size to pixels (e.g. a 1920x1080 mode with 2.0 scale would have 3840x2160 pixels) */
     refresh_rate: float;             /**< refresh rate (or 0.0f for unspecified) */
-    refresh_rate_numerator: int;     /**< precise refresh rate numerator (or 0 for unspecified) */
-    refresh_rate_denominator: int;   /**< precise refresh rate denominator */
+    refresh_rate_numerator: s32;     /**< precise refresh rate numerator (or 0 for unspecified) */
+    refresh_rate_denominator: s32;   /**< precise refresh rate denominator */
 
     internal: *SDL_DisplayModeData;  /**< Private */
 
@@ -515,7 +515,7 @@ SDL_GL_CONTEXT_RESET_LOSE_CONTEXT    : SDL_GLContextResetNotification : 0x0001;
  *
  * \sa SDL_GetVideoDriver
  */
-SDL_GetNumVideoDrivers :: () -> int #foreign SDL3;
+SDL_GetNumVideoDrivers :: () -> s32 #foreign SDL3;
 
 /**
  * Get the name of a built in video driver.
@@ -536,7 +536,7 @@ SDL_GetNumVideoDrivers :: () -> int #foreign SDL3;
  *
  * \sa SDL_GetNumVideoDrivers
  */
-SDL_GetVideoDriver :: (index: int) -> *u8 #foreign SDL3;
+SDL_GetVideoDriver :: (index: s32) -> *u8 #foreign SDL3;
 
 /**
  * Get the name of the currently initialized video driver.
@@ -581,7 +581,7 @@ SDL_GetSystemTheme :: () -> SDL_SystemTheme #foreign SDL3;
  *
  * \since This function is available since SDL 3.2.0.
  */
-SDL_GetDisplays :: (count: *int) -> *SDL_DisplayID #foreign SDL3;
+SDL_GetDisplays :: (count: *s32) -> *SDL_DisplayID #foreign SDL3;
 
 /**
  * Return the primary display.
@@ -778,7 +778,7 @@ SDL_GetDisplayContentScale :: (displayID: SDL_DisplayID) -> float32 #foreign SDL
  *
  * \sa SDL_GetDisplays
  */
-SDL_GetFullscreenDisplayModes :: (displayID: SDL_DisplayID, count: *int) -> **SDL_DisplayMode #foreign SDL3;
+SDL_GetFullscreenDisplayModes :: (displayID: SDL_DisplayID, count: *s32) -> **SDL_DisplayMode #foreign SDL3;
 
 /**
  * Get the closest match to the requested display mode.
@@ -809,7 +809,7 @@ SDL_GetFullscreenDisplayModes :: (displayID: SDL_DisplayID, count: *int) -> **SD
  * \sa SDL_GetDisplays
  * \sa SDL_GetFullscreenDisplayModes
  */
-SDL_GetClosestFullscreenDisplayMode :: (displayID: SDL_DisplayID, w: int, h: int, refresh_rate: float32, include_high_density_modes: bool, closest: *SDL_DisplayMode) -> bool #foreign SDL3;
+SDL_GetClosestFullscreenDisplayMode :: (displayID: SDL_DisplayID, w: s32, h: s32, refresh_rate: float32, include_high_density_modes: bool, closest: *SDL_DisplayMode) -> bool #foreign SDL3;
 
 /**
  * Get information about the desktop's display mode.
@@ -1040,7 +1040,7 @@ SDL_GetWindowPixelFormat :: (window: *SDL_Window) -> SDL_PixelFormat #foreign SD
  *
  * \since This function is available since SDL 3.2.0.
  */
-SDL_GetWindows :: (count: *int) -> **SDL_Window #foreign SDL3;
+SDL_GetWindows :: (count: *s32) -> **SDL_Window #foreign SDL3;
 
 /**
  * Create a window with the specified dimensions and flags.
@@ -1126,7 +1126,7 @@ SDL_GetWindows :: (count: *int) -> **SDL_Window #foreign SDL3;
  * \sa SDL_CreateWindowWithProperties
  * \sa SDL_DestroyWindow
  */
-SDL_CreateWindow :: (title: *u8, w: int, h: int, flags: SDL_WindowFlags) -> *SDL_Window #foreign SDL3;
+SDL_CreateWindow :: (title: *u8, w: s32, h: s32, flags: SDL_WindowFlags) -> *SDL_Window #foreign SDL3;
 
 /**
  * Create a child popup window of the specified parent window.
@@ -1188,7 +1188,7 @@ SDL_CreateWindow :: (title: *u8, w: int, h: int, flags: SDL_WindowFlags) -> *SDL
  * \sa SDL_DestroyWindow
  * \sa SDL_GetWindowParent
  */
-SDL_CreatePopupWindow :: (parent: *SDL_Window, offset_x: int, offset_y: int, w: int, h: int, flags: SDL_WindowFlags) -> *SDL_Window #foreign SDL3;
+SDL_CreatePopupWindow :: (parent: *SDL_Window, offset_x: s32, offset_y: s32, w: s32, h: s32, flags: SDL_WindowFlags) -> *SDL_Window #foreign SDL3;
 
 /**
  * Create a window with the specified properties.
@@ -1687,7 +1687,7 @@ SDL_SetWindowIcon :: (window: *SDL_Window, icon: *SDL_Surface) -> bool #foreign 
  * \sa SDL_GetWindowPosition
  * \sa SDL_SyncWindow
  */
-SDL_SetWindowPosition :: (window: *SDL_Window, x: int, y: int) -> bool #foreign SDL3;
+SDL_SetWindowPosition :: (window: *SDL_Window, x: s32, y: s32) -> bool #foreign SDL3;
 
 /**
  * Get the position of a window.
@@ -1712,7 +1712,7 @@ SDL_SetWindowPosition :: (window: *SDL_Window, x: int, y: int) -> bool #foreign 
  *
  * \sa SDL_SetWindowPosition
  */
-SDL_GetWindowPosition :: (window: *SDL_Window, x: *int, y: *int) -> bool #foreign SDL3;
+SDL_GetWindowPosition :: (window: *SDL_Window, x: *s32, y: *s32) -> bool #foreign SDL3;
 
 /**
  * Request that the size of a window's client area be set.
@@ -1749,7 +1749,7 @@ SDL_GetWindowPosition :: (window: *SDL_Window, x: *int, y: *int) -> bool #foreig
  * \sa SDL_SetWindowFullscreenMode
  * \sa SDL_SyncWindow
  */
-SDL_SetWindowSize :: (window: *SDL_Window, w: int, h: int) -> bool #foreign SDL3;
+SDL_SetWindowSize :: (window: *SDL_Window, w: s32, h: s32) -> bool #foreign SDL3;
 
 /**
  * Get the size of a window's client area.
@@ -1772,7 +1772,7 @@ SDL_SetWindowSize :: (window: *SDL_Window, w: int, h: int) -> bool #foreign SDL3
  * \sa SDL_GetWindowSizeInPixels
  * \sa SDL_SetWindowSize
  */
-SDL_GetWindowSize :: (window: *SDL_Window, w: *int, h: *int) -> bool #foreign SDL3;
+SDL_GetWindowSize :: (window: *SDL_Window, w: *s32, h: *s32) -> bool #foreign SDL3;
 
 /**
  * Get the safe area for this window.
@@ -1891,7 +1891,7 @@ SDL_GetWindowAspectRatio :: (window: *SDL_Window, min_aspect: *float32, max_aspe
  *
  * \sa SDL_GetWindowSize
  */
-SDL_GetWindowBordersSize :: (window: *SDL_Window, top: *int, left: *int, bottom: *int, right: *int) -> bool #foreign SDL3;
+SDL_GetWindowBordersSize :: (window: *SDL_Window, top: *s32, left: *s32, bottom: *s32, right: *s32) -> bool #foreign SDL3;
 
 /**
  * Get the size of a window's client area, in pixels.
@@ -1911,7 +1911,7 @@ SDL_GetWindowBordersSize :: (window: *SDL_Window, top: *int, left: *int, bottom:
  * \sa SDL_CreateWindow
  * \sa SDL_GetWindowSize
  */
-SDL_GetWindowSizeInPixels :: (window: *SDL_Window, w: *int, h: *int) -> bool #foreign SDL3;
+SDL_GetWindowSizeInPixels :: (window: *SDL_Window, w: *s32, h: *s32) -> bool #foreign SDL3;
 
 /**
  * Set the minimum size of a window's client area.
@@ -1929,7 +1929,7 @@ SDL_GetWindowSizeInPixels :: (window: *SDL_Window, w: *int, h: *int) -> bool #fo
  * \sa SDL_GetWindowMinimumSize
  * \sa SDL_SetWindowMaximumSize
  */
-SDL_SetWindowMinimumSize :: (window: *SDL_Window, min_w: int, min_h: int) -> bool #foreign SDL3;
+SDL_SetWindowMinimumSize :: (window: *SDL_Window, min_w: s32, min_h: s32) -> bool #foreign SDL3;
 
 /**
  * Get the minimum size of a window's client area.
@@ -1949,7 +1949,7 @@ SDL_SetWindowMinimumSize :: (window: *SDL_Window, min_w: int, min_h: int) -> boo
  * \sa SDL_GetWindowMaximumSize
  * \sa SDL_SetWindowMinimumSize
  */
-SDL_GetWindowMinimumSize :: (window: *SDL_Window, w: *int, h: *int) -> bool #foreign SDL3;
+SDL_GetWindowMinimumSize :: (window: *SDL_Window, w: *s32, h: *s32) -> bool #foreign SDL3;
 
 /**
  * Set the maximum size of a window's client area.
@@ -1967,7 +1967,7 @@ SDL_GetWindowMinimumSize :: (window: *SDL_Window, w: *int, h: *int) -> bool #for
  * \sa SDL_GetWindowMaximumSize
  * \sa SDL_SetWindowMinimumSize
  */
-SDL_SetWindowMaximumSize :: (window: *SDL_Window, max_w: int, max_h: int) -> bool #foreign SDL3;
+SDL_SetWindowMaximumSize :: (window: *SDL_Window, max_w: s32, max_h: s32) -> bool #foreign SDL3;
 
 /**
  * Get the maximum size of a window's client area.
@@ -1987,7 +1987,7 @@ SDL_SetWindowMaximumSize :: (window: *SDL_Window, max_w: int, max_h: int) -> boo
  * \sa SDL_GetWindowMinimumSize
  * \sa SDL_SetWindowMaximumSize
  */
-SDL_GetWindowMaximumSize :: (window: *SDL_Window, w: *int, h: *int) -> bool #foreign SDL3;
+SDL_GetWindowMaximumSize :: (window: *SDL_Window, w: *s32, h: *s32) -> bool #foreign SDL3;
 
 /**
  * Set the border state of a window.
@@ -2328,7 +2328,7 @@ SDL_GetWindowSurface :: (window: *SDL_Window) -> *SDL_Surface #foreign SDL3;
  *
  * \sa SDL_GetWindowSurfaceVSync
  */
-SDL_SetWindowSurfaceVSync :: (window: *SDL_Window, vsync: int) -> bool #foreign SDL3;
+SDL_SetWindowSurfaceVSync :: (window: *SDL_Window, vsync: s32) -> bool #foreign SDL3;
 
 SDL_WINDOW_SURFACE_VSYNC_DISABLED :: 0;
 SDL_WINDOW_SURFACE_VSYNC_ADAPTIVE :: (-1);
@@ -2348,7 +2348,7 @@ SDL_WINDOW_SURFACE_VSYNC_ADAPTIVE :: (-1);
  *
  * \sa SDL_SetWindowSurfaceVSync
  */
-SDL_GetWindowSurfaceVSync :: (window: *SDL_Window, vsync: *int) -> bool #foreign SDL3;
+SDL_GetWindowSurfaceVSync :: (window: *SDL_Window, vsync: *s32) -> bool #foreign SDL3;
 
 /**
  * Copy the window surface to the screen.
@@ -2398,7 +2398,7 @@ SDL_UpdateWindowSurface :: (window: *SDL_Window) -> bool #foreign SDL3;
  * \sa SDL_GetWindowSurface
  * \sa SDL_UpdateWindowSurface
  */
-SDL_UpdateWindowSurfaceRects :: (window: *SDL_Window, rects: *SDL_Rect, numrects: int) -> bool #foreign SDL3;
+SDL_UpdateWindowSurfaceRects :: (window: *SDL_Window, rects: *SDL_Rect, numrects: s32) -> bool #foreign SDL3;
 
 /**
  * Destroy the surface associated with the window.
@@ -2685,7 +2685,7 @@ SDL_SetWindowFocusable :: (window: *SDL_Window, focusable: bool) -> bool #foreig
  *
  * \since This function is available since SDL 3.2.0.
  */
-SDL_ShowWindowSystemMenu :: (window: *SDL_Window, x: int, y: int) -> bool #foreign SDL3;
+SDL_ShowWindowSystemMenu :: (window: *SDL_Window, x: s32, y: s32) -> bool #foreign SDL3;
 
 /**
  * Possible return values from the SDL_HitTest callback.
@@ -3056,7 +3056,7 @@ SDL_GL_ResetAttributes :: () -> void #foreign SDL3;
  * \sa SDL_GL_GetAttribute
  * \sa SDL_GL_ResetAttributes
  */
-SDL_GL_SetAttribute :: (attr: SDL_GLAttr, value: int) -> bool #foreign SDL3;
+SDL_GL_SetAttribute :: (attr: SDL_GLAttr, value: s32) -> bool #foreign SDL3;
 
 /**
  * Get the actual value for an attribute from the current context.
@@ -3074,7 +3074,7 @@ SDL_GL_SetAttribute :: (attr: SDL_GLAttr, value: int) -> bool #foreign SDL3;
  * \sa SDL_GL_ResetAttributes
  * \sa SDL_GL_SetAttribute
  */
-SDL_GL_GetAttribute :: (attr: SDL_GLAttr, value: *int) -> bool #foreign SDL3;
+SDL_GL_GetAttribute :: (attr: SDL_GLAttr, value: *s32) -> bool #foreign SDL3;
 
 /**
  * Create an OpenGL context for an OpenGL window, and make it current.
@@ -3232,7 +3232,7 @@ SDL_EGL_SetAttributeCallbacks :: (platformAttribCallback: SDL_EGLAttribArrayCall
  *
  * \sa SDL_GL_GetSwapInterval
  */
-SDL_GL_SetSwapInterval :: (interval: int) -> bool #foreign SDL3;
+SDL_GL_SetSwapInterval :: (interval: s32) -> bool #foreign SDL3;
 
 /**
  * Get the swap interval for the current OpenGL context.
@@ -3253,7 +3253,7 @@ SDL_GL_SetSwapInterval :: (interval: int) -> bool #foreign SDL3;
  *
  * \sa SDL_GL_SetSwapInterval
  */
-SDL_GL_GetSwapInterval :: (interval: *int) -> bool #foreign SDL3;
+SDL_GL_GetSwapInterval :: (interval: *s32) -> bool #foreign SDL3;
 
 /**
  * Update a window with OpenGL rendering.

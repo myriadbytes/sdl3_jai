@@ -1144,10 +1144,10 @@ SDL_FColor :: struct
  */
 SDL_Palette :: struct
 {
-    ncolors: int;        /**< number of elements in `colors`. */
+    ncolors: s32;        /**< number of elements in `colors`. */
     colors: *SDL_Color;  /**< an array of colors, `ncolors` long. */
     version: u32;     /**< internal use only, do not touch. */
-    refcount: int;       /**< internal use only, do not touch. */
+    refcount: s32;       /**< internal use only, do not touch. */
 };
 
 /**
@@ -1206,7 +1206,7 @@ SDL_GetPixelFormatName :: (format:SDL_PixelFormat) -> *u8 #foreign SDL3;
  *
  * \sa SDL_GetPixelFormatForMasks
  */
-SDL_GetMasksForPixelFormat :: (format:SDL_PixelFormat, bpp:*int, Rmask:*u32, Gmask:*u32, Bmask:*u32, Amask:*u32) -> bool #foreign SDL3;
+SDL_GetMasksForPixelFormat :: (format:SDL_PixelFormat, bpp:*s32, Rmask:*u32, Gmask:*u32, Bmask:*u32, Amask:*u32) -> bool #foreign SDL3;
 
 /**
  * Convert a bpp value and RGBA masks to an enumerated pixel format.
@@ -1228,7 +1228,7 @@ SDL_GetMasksForPixelFormat :: (format:SDL_PixelFormat, bpp:*int, Rmask:*u32, Gma
  *
  * \sa SDL_GetMasksForPixelFormat
  */
-SDL_GetPixelFormatForMasks :: (bpp:int, Rmask:u32, Gmask:u32, Bmask:u32, Amask:u32) -> SDL_PixelFormat #foreign SDL3;
+SDL_GetPixelFormatForMasks :: (bpp:s32, Rmask:u32, Gmask:u32, Bmask:u32, Amask:u32) -> SDL_PixelFormat #foreign SDL3;
 
 /**
  * Create an SDL_PixelFormatDetails structure corresponding to a pixel format.
@@ -1265,7 +1265,7 @@ SDL_GetPixelFormatDetails :: (format:SDL_PixelFormat) -> *SDL_PixelFormatDetails
  * \sa SDL_SetPaletteColors
  * \sa SDL_SetSurfacePalette
  */
-SDL_CreatePalette :: (ncolors:int) -> *SDL_Palette #foreign SDL3;
+SDL_CreatePalette :: (ncolors:s32) -> *SDL_Palette #foreign SDL3;
 
 /**
  * Set a range of colors in a palette.
@@ -1282,7 +1282,7 @@ SDL_CreatePalette :: (ncolors:int) -> *SDL_Palette #foreign SDL3;
  *
  * \since This function is available since SDL 3.2.0.
  */
-SDL_SetPaletteColors :: (palette:*SDL_Palette, colors:*SDL_Color, firstcolor:int, ncolors:int) -> bool #foreign SDL3;
+SDL_SetPaletteColors :: (palette:*SDL_Palette, colors:*SDL_Color, firstcolor:s32, ncolors:s32) -> bool #foreign SDL3;
 
 /**
  * Free a palette created with SDL_CreatePalette().

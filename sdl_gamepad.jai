@@ -562,7 +562,7 @@ SDL_GetGamepadPathForID :: (instance_id: SDL_JoystickID) -> *u8 #foreign SDL3;
  * \sa SDL_GetGamepadPlayerIndex
  * \sa SDL_GetGamepads
  */
-SDL_GetGamepadPlayerIndexForID :: (instance_id: SDL_JoystickID) -> int #foreign SDL3;
+SDL_GetGamepadPlayerIndexForID :: (instance_id: SDL_JoystickID) -> s32 #foreign SDL3;
 
 /**
  * Get the implementation-dependent GUID of a gamepad.
@@ -829,7 +829,7 @@ SDL_GetRealGamepadType :: (gamepad: *SDL_Gamepad) -> SDL_GamepadType #foreign SD
  *
  * \sa SDL_SetGamepadPlayerIndex
  */
-SDL_GetGamepadPlayerIndex :: (gamepad: *SDL_Gamepad) -> int #foreign SDL3;
+SDL_GetGamepadPlayerIndex :: (gamepad: *SDL_Gamepad) -> s32 #foreign SDL3;
 
 /**
  * Set the player index of an opened gamepad.
@@ -844,7 +844,7 @@ SDL_GetGamepadPlayerIndex :: (gamepad: *SDL_Gamepad) -> int #foreign SDL3;
  *
  * \sa SDL_GetGamepadPlayerIndex
  */
-SDL_SetGamepadPlayerIndex :: (gamepad: *SDL_Gamepad, player_index: int) -> bool #foreign SDL3;
+SDL_SetGamepadPlayerIndex :: (gamepad: *SDL_Gamepad, player_index: s32) -> bool #foreign SDL3;
 
 /**
  * Get the USB vendor ID of an opened gamepad, if available.
@@ -1265,7 +1265,7 @@ SDL_GetNumGamepadTouchpads :: (gamepad: *SDL_Gamepad) -> s32 #foreign SDL3;
  * \sa SDL_GetGamepadTouchpadFinger
  * \sa SDL_GetNumGamepadTouchpads
  */
-SDL_GetNumGamepadTouchpadFingers :: (gamepad: *SDL_Gamepad, touchpad: s32) -> int #foreign SDL3;
+SDL_GetNumGamepadTouchpadFingers :: (gamepad: *SDL_Gamepad, touchpad: s32) -> s32 #foreign SDL3;
 
 /**
  * Get the current state of a finger on a touchpad on a gamepad.

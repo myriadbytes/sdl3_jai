@@ -41,15 +41,15 @@ freely, subject to the following restrictions:
  */
 SDL_DateTime :: struct
 {
-    year: int;                  /**< Year */
-    month: int;                 /**< Month [01-12] */
-    day: int;                   /**< Day of the month [01-31] */
-    hour: int;                  /**< Hour [0-23] */
-    minute: int;                /**< Minute [0-59] */
-    second: int;                /**< Seconds [0-60] */
-    nanosecond: int;            /**< Nanoseconds [0-999999999] */
-    day_of_week: int;           /**< Day of the week [0-6] (0 being Sunday) */
-    utc_offset: int;            /**< Seconds east of UTC */
+    year: s32;                  /**< Year */
+    month: s32;                 /**< Month [01-12] */
+    day: s32;                   /**< Day of the month [01-31] */
+    hour: s32;                  /**< Hour [0-23] */
+    minute: s32;                /**< Minute [0-59] */
+    second: s32;                /**< Seconds [0-60] */
+    nanosecond: s32;            /**< Nanoseconds [0-999999999] */
+    day_of_week: s32;           /**< Day of the week [0-6] (0 being Sunday) */
+    utc_offset: s32;            /**< Seconds east of UTC */
 };
 
 /**
@@ -182,7 +182,7 @@ SDL_TimeFromWindows :: (dwLowDateTime: u32, dwHighDateTime: u32) -> SDL_Time #fo
  *
  * \since This function is available since SDL 3.2.0.
  */
-SDL_GetDaysInMonth :: (year: s32, month: s32) -> int #foreign SDL3;
+SDL_GetDaysInMonth :: (year: s32, month: s32) -> s32 #foreign SDL3;
 
 /**
  * Get the day of year for a calendar date.
@@ -195,7 +195,7 @@ SDL_GetDaysInMonth :: (year: s32, month: s32) -> int #foreign SDL3;
  *
  * \since This function is available since SDL 3.2.0.
  */
-SDL_GetDayOfYear :: (year: s32, month: s32, day: s32) -> int #foreign SDL3;
+SDL_GetDayOfYear :: (year: s32, month: s32, day: s32) -> s32 #foreign SDL3;
 
 /**
  * Get the day of week for a calendar date.
@@ -208,4 +208,4 @@ SDL_GetDayOfYear :: (year: s32, month: s32, day: s32) -> int #foreign SDL3;
  *
  * \since This function is available since SDL 3.2.0.
  */
-SDL_GetDayOfWeek :: (year: s32, month: s32, day: s32) -> int #foreign SDL3;
+SDL_GetDayOfWeek :: (year: s32, month: s32, day: s32) -> s32 #foreign SDL3;

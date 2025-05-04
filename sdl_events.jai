@@ -403,22 +403,21 @@ SDL_TextInputEvent :: struct
  *
  * \since This struct is available since SDL 3.2.0.
  */
-// TODO(Lucas): Uncomment this when the bindings for the SDL subsystem needed for this event have been written.
-/*
+
 SDL_MouseDeviceEvent :: struct
 {
     type: SDL_EventType; /**< SDL_EVENT_MOUSE_ADDED or SDL_EVENT_MOUSE_REMOVED */
     reserved: u32;
     timestamp: u64;   /**< In nanoseconds, populated using SDL_GetTicksNS() */
     which: SDL_MouseID;  /**< The mouse instance id */
-}  */
+}
+
 /**
  * Mouse motion event structure (event.motion.*)
  *
  * \since This struct is available since SDL 3.2.0.
  */
-// TODO(Lucas): Uncomment this when the bindings for the SDL subsystem needed for this event have been written.
-/*
+
 SDL_MouseMotionEvent :: struct
 {
     type: SDL_EventType; /**< SDL_EVENT_MOUSE_MOTION */
@@ -431,15 +430,14 @@ SDL_MouseMotionEvent :: struct
     y: float32;            /**< Y coordinate, relative to window */
     xrel: float32;         /**< The relative motion in the X direction */
     yrel: float32;         /**< The relative motion in the Y direction */
-}; */
+};
 
 /**
  * Mouse button event structure (event.button.*)
  *
  * \since This struct is available since SDL 3.2.0.
  */
-// TODO(Lucas): Uncomment this when the bindings for the SDL subsystem needed for this event have been written.
-/*
+
 SDL_MouseButtonEvent :: struct
 {
     type: SDL_EventType; /**< SDL_EVENT_MOUSE_BUTTON_DOWN or SDL_EVENT_MOUSE_BUTTON_UP */
@@ -453,15 +451,14 @@ SDL_MouseButtonEvent :: struct
     padding: u8;
     x: float32;            /**< X coordinate, relative to window */
     y: float32;            /**< Y coordinate, relative to window */
-}; */
+};
 
 /**
  * Mouse wheel event structure (event.wheel.*)
  *
  * \since This struct is available since SDL 3.2.0.
  */
-// TODO(Lucas): Uncomment this when the bindings for the SDL subsystem needed for this event have been written.
-/*
+
 SDL_MouseWheelEvent :: struct
 {
     type: SDL_EventType; /**< SDL_EVENT_MOUSE_WHEEL */
@@ -474,7 +471,7 @@ SDL_MouseWheelEvent :: struct
     direction: SDL_MouseWheelDirection; /**< Set to one of the SDL_MOUSEWHEEL_* defines. When FLIPPED the values in X and Y will be opposite. Multiply by -1 to change them back */
     mouse_x: float32;      /**< X coordinate, relative to window */
     mouse_y: float32;      /**< Y coordinate, relative to window */
-} ; */
+} ;
 
 /**
  * Joystick axis motion event structure (event.jaxis.*)
@@ -584,7 +581,7 @@ SDL_JoyBatteryEvent :: struct
     timestamp: u64;   /**< In nanoseconds, populated using SDL_GetTicksNS() */
     which: SDL_JoystickID; /**< The joystick instance id */
     state: SDL_PowerState; /**< The joystick battery state */
-    percent: int;          /**< The joystick battery percent charge remaining */
+    percent: s32;          /**< The joystick battery percent charge remaining */
 };
 
 /**
@@ -992,10 +989,10 @@ SDL_Event :: union
     edit: SDL_TextEditingEvent;              /**< Text editing event data */
     edit_candidates: SDL_TextEditingCandidatesEvent; /**< Text editing candidates event data */
     text: SDL_TextInputEvent;                /**< Text input event data */
-//    mdevice: SDL_MouseDeviceEvent;           /**< Mouse device change event data */
-//    motion: SDL_MouseMotionEvent;            /**< Mouse motion event data */
-//    button: SDL_MouseButtonEvent;            /**< Mouse button event data */
-//    wheel: SDL_MouseWheelEvent;              /**< Mouse wheel event data */
+    mdevice: SDL_MouseDeviceEvent;           /**< Mouse device change event data */
+    motion: SDL_MouseMotionEvent;            /**< Mouse motion event data */
+    button: SDL_MouseButtonEvent;            /**< Mouse button event data */
+    wheel: SDL_MouseWheelEvent;              /**< Mouse wheel event data */
     jdevice: SDL_JoyDeviceEvent;             /**< Joystick device change event data */
     jaxis: SDL_JoyAxisEvent;                 /**< Joystick axis event data */
     jball: SDL_JoyBallEvent;                 /**< Joystick ball event data */
@@ -1121,7 +1118,7 @@ using SDL_EventAction :: enum u32
  * \sa SDL_PumpEvents
  * \sa SDL_PushEvent
  */
-SDL_PeepEvents :: (events: *SDL_Event, numevents: int, action: SDL_EventAction, minType: u32, maxType: u32) -> int #foreign SDL3;
+SDL_PeepEvents :: (events: *SDL_Event, numevents: s32, action: SDL_EventAction, minType: u32, maxType: u32) -> s32 #foreign SDL3;
 /* @} */
 
 /**
@@ -1543,7 +1540,7 @@ SDL_EventEnabled :: (type: u32) -> bool #foreign SDL3;
  *
  * \sa SDL_PushEvent
  */
-SDL_RegisterEvents :: (numevents: int) -> u32 #foreign SDL3;
+SDL_RegisterEvents :: (numevents: s32) -> u32 #foreign SDL3;
 
 /**
  * Get window associated with an event.

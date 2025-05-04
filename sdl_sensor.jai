@@ -178,7 +178,7 @@ SDL_GetSensorTypeForID :: (instance_id: SDL_SensorID) -> SDL_SensorType #foreign
  *
  * \since This function is available since SDL 3.2.0.
  */
-SDL_GetSensorNonPortableTypeForID :: (instance_id: SDL_SensorID) -> int #foreign SDL3;
+SDL_GetSensorNonPortableTypeForID :: (instance_id: SDL_SensorID) -> s32 #foreign SDL3;
 
 /**
  * Open a sensor for use.
@@ -243,7 +243,7 @@ SDL_GetSensorType :: (sensor: *SDL_Sensor) -> SDL_SensorType #foreign SDL3;
  *
  * \since This function is available since SDL 3.2.0.
  */
-SDL_GetSensorNonPortableType :: (sensor: *SDL_Sensor) -> int #foreign SDL3;
+SDL_GetSensorNonPortableType :: (sensor: *SDL_Sensor) -> s32 #foreign SDL3;
 
 /**
  * Get the instance ID of a sensor.

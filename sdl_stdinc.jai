@@ -983,7 +983,7 @@ SDL_fmodf :: (x: float32, y: float32) -> float32 #foreign SDL3;
  *
  * \sa SDL_isinff
  */
-SDL_isinf :: (x: float64) -> int #foreign SDL3;
+SDL_isinf :: (x: float64) -> s32 #foreign SDL3;
 
 /**
  * Return whether the value is infinity.
@@ -997,7 +997,7 @@ SDL_isinf :: (x: float64) -> int #foreign SDL3;
  *
  * \sa SDL_isinf
  */
-SDL_isinff :: (x: float32) -> int #foreign SDL3;
+SDL_isinff :: (x: float32) -> s32 #foreign SDL3;
 
 /**
  * Return whether the value is NaN.
@@ -1011,7 +1011,7 @@ SDL_isinff :: (x: float32) -> int #foreign SDL3;
  *
  * \sa SDL_isnanf
  */
-SDL_isnan :: (x: float64) -> int #foreign SDL3;
+SDL_isnan :: (x: float64) -> s32 #foreign SDL3;
 
 /**
  * Return whether the value is NaN.
@@ -1025,7 +1025,7 @@ SDL_isnan :: (x: float64) -> int #foreign SDL3;
  *
  * \sa SDL_isnan
  */
-SDL_isnanf :: (x: float32) -> int #foreign SDL3;
+SDL_isnanf :: (x: float32) -> s32 #foreign SDL3;
 
 /**
  * Compute the natural logarithm of `x`.

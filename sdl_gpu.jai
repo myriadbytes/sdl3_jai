@@ -2193,7 +2193,7 @@ SDL_DestroyGPUDevice :: (device: *SDL_GPUDevice) -> void #foreign SDL3;
  *
  * \sa SDL_GetGPUDriver
  */
-SDL_GetNumGPUDrivers :: () -> int #foreign SDL3;
+SDL_GetNumGPUDrivers :: () -> s32 #foreign SDL3;
 
 /**
  * Get the name of a built in GPU driver.
@@ -2212,7 +2212,7 @@ SDL_GetNumGPUDrivers :: () -> int #foreign SDL3;
  *
  * \sa SDL_GetNumGPUDrivers
  */
-SDL_GetGPUDriver :: (index: int) -> *u8 #foreign SDL3;
+SDL_GetGPUDriver :: (index: s32) -> *u8 #foreign SDL3;
 
 /**
  * Returns the name of the backend used to create this GPU context.
